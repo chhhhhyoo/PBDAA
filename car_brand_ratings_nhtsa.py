@@ -9,16 +9,22 @@ len_blist = len(brand_list)
 driver = webdriver.Chrome('chromedriver.exe')
 driver.get("https://www.nhtsa.gov/ratings")
 time.sleep(3)
+# Where we want to search the target brand
 elem_login = driver.find_element_by_id('ratings-search-input')
+# Create empty dictionary to store our DataFrame
 dfs = {}
 for brand in brand_list:
+    # Clear the input before typing in the target brand
     elem_login.clear()
+    # Type in the target brand
     elem_login.send_keys(brand)
+    # Click the Search Button
     xpath = '''//*[@id="vehicle"]/div[2]/div[2]/div[1]/form/div/div/div/button'''
     driver.find_element_by_xpath(xpath).click()
+    # Wait for the load
     time.sleep(5)
     a= 1
-    # create an empty list to store the extracted data
+    # Create an empty list to store the extracted data
     data = []
 
     while a==1:
@@ -59,3 +65,10 @@ for brand in brand_list:
     dfs[brand] = df
 
 driver.quit()
+
+# Sort each brand based on their average of Overall Ratings
+sorted_brands = sorted(brand_list, key=lambda x: round(pd.to_numeric(dfs[x]['OVERALL RATING']).mean(), 3), reverse=True)
+# Print the result
+for brand in sorted_brands:
+    avg_score = round(pd.to_numeric(dfs[brand]['OVERALL RATING']).mean(), 3)
+    print("{:<15}: {}".format(brand, avg_score))
