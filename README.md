@@ -3,9 +3,11 @@
 
 This will be using selenium to automate the collection of the data from the web browser to create dataframes that will be saved as csv files.
 
+
 [Clean.]
 
 This will be used to clean the unnecessary data in vehicle names of the csv files created for smoother analysis.
+
 
 [RegiCount & CountRecs]
 
