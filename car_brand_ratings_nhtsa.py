@@ -63,16 +63,9 @@ for brand in brand_list:
 
 driver.quit()
 
-# Sort each brand based on their average of Overall Ratings
+# sort each brand based on their average of Overall Ratings
 sorted_brands = sorted(brand_list, key=lambda x: round(pd.to_numeric(dfs[x]['OVERALL RATING']).mean(), 3), reverse=True)
-# Print the result
+# print the result
 for brand in sorted_brands:
     avg_score = round(pd.to_numeric(dfs[brand]['OVERALL RATING']).mean(), 3)
-    print("{:<15}: {}".format(brand, avg_score))
-
-# Sort each brand based on their average of Overall Ratings
-sorted_brands = sorted(brand_list, key=lambda x: round(pd.to_numeric(dfs[x]['OVERALL RATING']).mean(), 3), reverse=True)
-# Print the result
-for brand in sorted_brands:
-    avg_score = round(pd.to_numeric(dfs[brand]['OVERALL RATING']).mean(), 3)
-    print("{:<15}: {}".format(brand, avg_score))
+    print("{}: {}".format(brand, avg_score))
