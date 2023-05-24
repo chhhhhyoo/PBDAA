@@ -4,7 +4,7 @@
 For automated interaction with website to collect the data, selenium was chosen to scrape the data from the website
 and convert the dataframe created for each brand to csv files.
 
-[Clean.]
+[Clean]
 
 This will be used to clean the unnecessary data in vehicle names of the csv files created for smoother analysis.
 
